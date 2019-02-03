@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class ElementCounter {
+	
+	public static int countItems(ArrayList<String> list) {
+		int count = 0;
+		for (String element: list) {
+			count++;
+		}
+		return count;
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<String> list = new ArrayList<String>();
+		
+		list.add("One");
+		list.add("Two");
+		list.add("Three");
+		
+		System.out.println(countItems(list));
+	}
+}

@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class WordDetector {
+	public static void main(String[] args) {
+		ArrayList<String> wordList = new ArrayList<String>();
+		
+		Scanner input = new Scanner(System.in);
+		String word = input.nextLine();
+		
+		while(!(word.isEmpty())) {
+			wordList.add(word);
+			word = input.nextLine();
+		} 
+		
+		System.out.println("You typed the following words:");
+		for (String words : wordList) {
+			System.out.printf("%n%s", words);
+		}
+	}
+}

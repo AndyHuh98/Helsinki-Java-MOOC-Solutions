@@ -1,0 +1,21 @@
+
+public class Product {
+	private String name;
+	private double price;
+	private int stock;
+	
+	public Product(String productName, double productPrice, int productStocked) {
+		name = productName;
+		price = productPrice;
+		stock = productStocked;
+	}
+	
+	public void printProduct() {
+		System.out.printf("%s, price %.1f, amount %d", name, price, stock);
+	}
+	
+	public static void main (String args[]) {
+		Product banana = new Product("banana", 1.1, 13);
+		banana.printProduct();
+	}
+}

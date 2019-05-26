@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+
+public class HangmanLogic {
+
+	private ArrayList<Integer> locations = new ArrayList<Integer>();
+    private String word;
+    private String guessedLetters;
+    private int numberOfFaults;
+
+    public HangmanLogic(String word) {
+        this.word = word.toUpperCase();
+        this.guessedLetters = "";
+        this.numberOfFaults = 0;
+    }
+
+    public int numberOfFaults() {
+        return this.numberOfFaults;
+    }
+
+    public String guessedLetters() {
+        return this.guessedLetters;
+    }
+
+    public int losingFaultAmount() {
+        return 12;
+    }
+
+    public void guessLetter(String letter) {
+    	//If the string of letters guessed contains the guessed letter
+    	//Then don't do anything (maybe output a statement that says 
+    	//You've already guessed the letter, if you want
+    	if (!guessedLetters.contains(letter)) {
+    		//Add the letter to the guessed list
+    		guessedLetters += letter;
+    		//Iterate through the word and compare
+    		boolean match = false;
+    		for (int i = 0; i < word.length(); i++) {
+    			//Turn letter value into a char value to compare
+    			if (letter.charAt(0) == word.charAt(i)) {
+    				match = true;
+    				locations.add(i); //push location of character matched
+    			}
+    		}
+    		//If there were no matches throughout the entire word
+    		if (!match) {
+    			numberOfFaults++;
+    		}
+    	}
+    	
+    }
+
+    public String hiddenWord() {
+    	String hiddenWord = "";
+    	for (int i = 0; i < word.length(); i++) {
+    		//If the arraylist of matched locations contains i
+    		if (locations.contains(i)) {
+    			//append the character at i to the hiddenWord display
+    			hiddenWord += word.charAt(i);
+    		} else {
+    			//else append a blank
+    			hiddenWord += "_";
+    		}
+    	}
+    	return hiddenWord;
+    }
+    
+    public static void main(String[] args) {
+    	HangmanLogic l = new HangmanLogic("kissa");
+    	System.out.println("word is: "+l.hiddenWord());
+
+    	System.out.println("guessing: A, D, S, F, D");
+    	l.guessLetter("A");
+    	l.guessLetter("D");
+    	l.guessLetter("S");
+    	l.guessLetter("F");
+    	l.guessLetter("D");
+    	System.out.println("guessed letters: "+l.guessedLetters());
+    	System.out.println("number of faults: "+l.numberOfFaults());
+    	System.out.println("word now: "+l.hiddenWord());    
+    }
+}

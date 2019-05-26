@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+public class LotteryNumbers {
+    private ArrayList<Integer> numbers;
+
+    public LotteryNumbers() {
+        // We'll format a list for the numbers
+        this.numbers = new ArrayList<Integer>();
+        // Draw numbers as LotteryNumbers is created
+        this.drawNumbers();
+    }
+
+    public ArrayList<Integer> numbers() {
+        return this.numbers;
+    }
+
+    public void drawNumbers() {
+    	/* Create a new random object, then create 7 random numbers
+    	 * as the "drawn" lottery numbers. If a duplicate is drawn, 
+    	 * draw another. Add them to the list of numbers drawn.
+    	 *  */
+    	Random random = new Random();
+    	for (int i = 0; i < 7; i++) {
+    		int drawnNumber = random.nextInt(39) + 1;
+    		while (containsNumber(drawnNumber)) {
+    			drawnNumber = random.nextInt(39) + 1;
+    		}
+    		numbers.add(drawnNumber);
+    	}
+    }
+
+    public boolean containsNumber(int number) {
+    	//Iterate through list of numbers and compare.
+    	for (int i = 0; i < numbers.size(); i++) {
+    		if (number == numbers.get(i)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
+    
+    public static void main(String[] args) {
+        LotteryNumbers lotteryNumbers = new LotteryNumbers();
+        ArrayList<Integer> numbers = lotteryNumbers.numbers();
+
+        System.out.println("Lottery numbers:");
+        for (int number : numbers) {
+            System.out.print(number + " ");
+        }
+        System.out.println("");
+    }
+}

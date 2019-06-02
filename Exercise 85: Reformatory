@@ -1,0 +1,45 @@
+public class Reformatory {
+	//Want it to be static because it should increment each time for
+	//ALL instances of a "Person"
+	public static int timesMeasured = 0;
+	
+	//Returns the person's weight
+    public int weight(Person person) {
+       timesMeasured++;
+       return person.getWeight();
+    }
+    
+    //"feeds" the person, allowing them to gain weight
+    public void feed(Person person) {
+    	//Use the built in set weight method, and get the person's current weight
+    	//Then increment it
+    	person.setWeight(person.getWeight() + 1);
+    }
+    
+    //Returns total times weight has been measured
+    public int totalWeightsMeasured() {
+    	return timesMeasured;
+    }
+    
+    public static void main(String[] args) {
+        Reformatory eastHelsinkiReformatory = new Reformatory();
+
+        Person brian = new Person("Brian", 1, 110, 7);
+        Person pekka = new Person("Pekka", 33, 176, 85);
+
+        System.out.println("total weights measured "+eastHelsinkiReformatory.totalWeightsMeasured());
+
+        eastHelsinkiReformatory.weight(brian);
+        eastHelsinkiReformatory.weight(pekka);
+
+        System.out.println("total weights measured "+eastHelsinkiReformatory.totalWeightsMeasured());
+
+        eastHelsinkiReformatory.weight(brian);
+        eastHelsinkiReformatory.weight(brian);
+        eastHelsinkiReformatory.weight(brian);
+        eastHelsinkiReformatory.weight(brian);
+
+        System.out.println("total weights measured "+eastHelsinkiReformatory.totalWeightsMeasured());
+    }
+      
+}

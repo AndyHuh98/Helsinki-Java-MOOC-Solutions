@@ -1,0 +1,81 @@
+
+public class Counter {
+	private boolean hasCheck;
+	private int count = 0;
+	
+	//Creates counter w/ given value & passes a check parameter.
+	public Counter(int startingValue, boolean check) {
+		count = startingValue;
+		if (check) {
+			hasCheck = true;
+		} else {
+			hasCheck = false;
+		}
+	} 
+	
+	//Creates counter w/ given value and checking off
+	public Counter(int startingValue) {
+		hasCheck = false;
+		count = startingValue;
+	}
+	
+	//Creates counter w/ starting value 0
+	public Counter(boolean check) {
+		count = 0;
+		if (check) {
+			hasCheck = true;
+		} else {
+			hasCheck = false;
+		}
+	}
+	
+	//Creates counter w/ starting value 0 and checking off
+	public Counter() {
+		hasCheck = false;
+		count = 0;
+	}
+	
+	//Returns current value of counter
+	public int value() {
+		return count;
+	}
+	
+	//Returns whether counter has a checker or not
+	public boolean hasCheck() {
+		return hasCheck;
+	}
+	
+	//Increments the counter
+	public void increase() {
+		count++;
+	}
+	
+	//Decreases the counter
+	public void decrease() {
+		//If object has a checker, then check < 0, else just decrement.
+		if (hasCheck()) {
+			if (count - 1 < 0) {
+				count = 0;
+			} else {
+				count--;
+			}
+		} else {
+			count--;
+		}
+	}
+	
+	//Overloaded Methods for Increase and Decrease
+	public void increase(int increaseAmount) {
+		if (increaseAmount > 0) {
+			count += increaseAmount;
+		}
+	}
+	
+	public void decrease(int decreaseAmount) {
+		if (decreaseAmount > 0 && count - decreaseAmount > 0) {
+			count -= decreaseAmount;
+		}
+	}
+	
+	//Create main method
+}

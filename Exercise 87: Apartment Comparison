@@ -1,0 +1,42 @@
+public class Apartment {
+    private int rooms;
+    private int squareMeters;
+    private int pricePerSquareMeter;
+
+    public Apartment(int rooms, int squareMeters, int pricePerSquareMeter){
+        this.rooms = rooms;
+        this.squareMeters = squareMeters;
+        this.pricePerSquareMeter = pricePerSquareMeter;
+    }
+    
+    public boolean larger(Apartment otherApartment) {
+    	if (this.squareMeters > otherApartment.squareMeters) {
+    		return true;
+    	} 
+    	return false;
+    }
+    
+    public int priceDifference(Apartment otherApartment) {
+    	int thisPrice = this.pricePerSquareMeter * this.squareMeters;
+    	int otherPrice = otherApartment.pricePerSquareMeter * otherApartment.squareMeters;
+    	
+    	//returns the absolute value of the difference between the two
+    	return Math.abs(thisPrice - otherPrice);
+    }
+    
+    public boolean moreExpensiveThan(Apartment otherApartment) {
+    	int thisPrice = this.pricePerSquareMeter * this.squareMeters;
+    	int otherPrice = otherApartment.pricePerSquareMeter * otherApartment.squareMeters;
+    	return (thisPrice > otherPrice);
+    }
+    
+    public static void main(String[] args) {
+    	Apartment studioManhattan = new Apartment(1, 16, 5500);
+    	Apartment twoRoomsBrooklyn = new Apartment(2, 38, 4200);
+    	Apartment fourAndKitchenBronx = new Apartment(3, 78, 2500);
+
+    	System.out.println( studioManhattan.moreExpensiveThan(twoRoomsBrooklyn) );       // false
+    	System.out.println( fourAndKitchenBronx.moreExpensiveThan(twoRoomsBrooklyn) );   // true
+    }
+}
+  

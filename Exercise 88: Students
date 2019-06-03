@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Student {
+	static ArrayList<Student> list = new ArrayList<Student>();
+	private String name;
+	private String studentNumber;
+	
+	//Getters and Setters
+	public String getName() { return name; }
+	public String getStudentNumber() { return studentNumber; }
+	
+	//Override toString
+	@Override
+	public String toString() {
+		return this.getName() + " (" + this.getStudentNumber() + ")";
+	}
+	
+	public static void inputStudents() {
+		Scanner input = new Scanner(System.in);
+		String name;
+		String studentNumber;
+		
+		System.out.print("Name: ");
+		name = input.nextLine();
+		
+		while (!name.isEmpty()) {
+			System.out.print("Student Number: ");
+			studentNumber = input.nextLine();
+			while (studentNumber.isEmpty()) {
+				System.out.print("Student Number: ");
+				studentNumber = input.nextLine();
+			}
+			list.add(new Student(name, studentNumber));
+			System.out.print("Name: ");
+			name = input.nextLine();
+		}
+		System.out.println("-------INPUT END-------");
+	}
+	
+	public static void search() {
+		String searchTerm;
+		Scanner input = new Scanner(System.in);
+		
+		System.out.print("Give search term: ");
+		searchTerm = input.nextLine().toLowerCase();
+		
+		System.out.println("Result: ");
+		for (Student student : list) {
+			if (student.getName().toLowerCase().contains(searchTerm)) {
+				System.out.println(student.toString());
+			}
+		}
+	}
+	
+	public static void printList() {
+		for (Student student : list) {
+			System.out.println(student.toString());
+		}
+	}
+	
+	//Constructor
+	public Student(String name, String studentNumber) {
+		this.name = name;
+		this.studentNumber = studentNumber;
+	}
+	
+	public static void main(String[] args) {
+		inputStudents();
+		printList();
+		search();
+	}
+}

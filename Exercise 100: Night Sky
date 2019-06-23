@@ -1,0 +1,61 @@
+import java.util.Random;
+
+public class NightSky {
+	double density;
+	int width;
+	int height;
+	int starsPrinted;
+	
+	//1. Constructors
+	public NightSky(double density) {
+		this(density, 20, 10);
+	}
+	
+	public NightSky(int width, int height) {
+		this(0.1, width, height);
+	}
+	
+	public NightSky(double density, int width, int height) {
+		this.density = density;
+		this.width = width;
+		this.height = height;
+	}
+	
+	//2. prints one line of stars
+	public void printLine() {
+		for (int i = 0; i < width; i++) {
+			Random random = new Random();
+			double value = random.nextDouble();
+			if (1 - value < density) {
+				System.out.print("*");
+				starsPrinted++;
+			} else {
+				System.out.print(" ");
+			}
+		}
+		System.out.println();
+	}
+	
+	//2b. prints the entire sky
+	public void print() {
+		starsPrinted = 0;
+		for (int i = 0; i < height; i++) {
+			printLine();
+		}
+	}
+	
+	//3. returns stars in last print
+	public int starsInLastPrint() {
+		return starsPrinted;
+	}
+	
+	public static void main(String[] args) {
+		NightSky NightSky = new NightSky(8, 4);
+		NightSky.print();
+		System.out.println("Number of stars: " + NightSky.starsInLastPrint());
+		System.out.println("");
+
+		NightSky.print();
+		System.out.println("Number of stars: " + NightSky.starsInLastPrint());
+	}
+}

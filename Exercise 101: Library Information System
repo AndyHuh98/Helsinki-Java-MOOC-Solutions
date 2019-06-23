@@ -1,0 +1,77 @@
+import java.util.ArrayList;
+
+public class Library {
+	ArrayList<Book> books;
+	
+	//Constructor
+	public Library() {
+		books = new ArrayList<Book>();
+	}
+	
+	//Adds a book to library
+	public void addBook(Book newBook) {
+		books.add(newBook);
+	}
+	
+	//Prints library books
+	public void printBooks() {
+		for (Book book : books) {
+			System.out.println(book.toString());
+		}
+	}
+	
+	//Search Functionalities:
+	public ArrayList<Book> searchByTitle(String title) {
+		ArrayList<Book> matches = new ArrayList<Book>();
+		for (Book book : books) {
+			if (book.title().contains(title)) {
+				matches.add(book);
+			}
+		}
+		return matches;
+	}
+	
+	public ArrayList<Book> searchByPublisher(String publisher) {
+		ArrayList<Book> matches = new ArrayList<Book>();
+		for (Book book : books) {
+			if (book.publisher().contains(publisher)) {
+				matches.add(book);
+			}
+		}
+		return matches;
+	}
+	
+	public ArrayList<Book> searchByYear(int year) {
+		ArrayList<Book> matches = new ArrayList<Book>();
+		for (Book book : books) {
+			if (book.year() == year) {
+				matches.add(book);
+			}
+		}
+		return matches;
+	}
+	
+	public static void main(String[] args) {
+		Library Library = new Library();
+
+		Library.addBook(new Book("Cheese Problems Solved", "Woodhead Publishing", 2007));
+		Library.addBook(new Book("The Stinky Cheese Man and Other Fairly Stupid Tales", "Penguin Group", 1992));
+		Library.addBook(new Book("NHL Hockey", "Stanley Kupp", 1952));
+		Library.addBook(new Book("Battle Axes", "Tom A. Hawk", 1851));
+
+		ArrayList<Book> result = Library.searchByTitle("Cheese");
+		for (Book book: result) {
+		    System.out.println(book);
+		}
+
+		System.out.println("---");
+		for (Book book: Library.searchByPublisher("Penguin Group  ")) {
+		    System.out.println(book);
+		}
+
+		System.out.println("---");
+		for (Book book: Library.searchByYear(1851)) {
+		    System.out.println(book);
+		}
+	}
+}
